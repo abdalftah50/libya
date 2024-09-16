@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة التسجيل</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .verify-btn {
+            background-color: #007BFF;
+            margin-top: 10px;
+        }
+
+        .verify-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .question-group h3 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .question-group select {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>تسجيل في المسابقة</h1>
+
+        <form method="POST" action="save_data.php">
+            <label for="fullName">الاسم الكامل</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="facebook">اسم حساب فيس بوك</label>
+            <input type="text" id="facebook" name="facebook" required>
+
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">كلمة المرور</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="phone">رقم الهاتف (091/092/093/094)</label>
+            <input type="tel" id="phone" name="phone" pattern="^(091|092|093|094)\d{7}$" required>
+
+            <div class="question-group">
+                <h3>الأسئلة العامة</h3>
+
+                <!-- السؤال الأول -->
+                <label for="q1">1. ما هو الكوكب الذي يُطلق عليه الكوكب الأحمر؟</label>
+                <select id="q1" name="q1" required>
+                    <option value="">اختر إجابة</option>
+                    <option value="المريخ">المريخ</option>
+                    <option value="الزهرة">الزهرة</option>
+                    <option value="الأرض">الأرض</option>
+                    <option value="المشتري">المشتري</option>
+                </select>
+
+                <!-- السؤال الثاني -->
+                <label for="q2">2. من هو مخترع المصباح الكهربائي؟</label>
+                <select id="q2" name="q2" required>
+                    <option value="">اختر إجابة</option>
+                    <option value="توماس إديسون">توماس إديسون</option>
+                    <option value="ألكسندر جراهام بيل">ألكسندر جراهام بيل</option>
+                    <option value="نيكولا تسلا">نيكولا تسلا</option>
+                    <option value="ألبرت أينشتاين">ألبرت أينشتاين</option>
+                </select>
+
+                <!-- السؤال الثالث -->
+                <label for="q3">3. كم عدد الكواكب في النظام الشمسي؟</label>
+                <select id="q3" name="q3" required>
+                    <option value="">اختر إجابة</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+
+                <!-- السؤال الرابع الجديد -->
+                <label for="q4">4. ما هو الحيوان الأسرع على وجه الأرض؟</label>
+                <select id="q4" name="q4" required>
+                    <option value="">اختر إجابة</option>
+                    <option value="الفهد">الفهد</option>
+                    <option value="الأسد">الأسد</option>
+                    <option value="الصقر">الصقر</option>
+                    <option value="الحصان">الحصان</option>
+                </select>
+
+                <!-- السؤال الخامس الجديد -->
+                <label for="q5">5. من هو مؤسس شركة مايكروسوفت؟</label>
+                <select id="q5" name="q5" required>
+                    <option value="">اختر إجابة</option>
+                    <option value="بيل غيتس">بيل غيتس</option>
+                    <option value="ستيف جوبز">ستيف جوبز</option>
+                    <option value="مارك زوكربيرغ">مارك زوكربيرغ</option>
+                    <option value="لاري بيج">لاري بيج</option>
+                </select>
+
+                <!-- السؤال السادس الجديد -->
+                <label for="q6">6. ما هي أكبر قارة من حيث المساحة؟</label>
+                <select id="q6" name="q6" required>
+                    <option value="">اختر إجابة</option>
+                    <option value="آسيا">آسيا</option>
+                    <option value="أفريقيا">أفريقيا</option>
+                    <option value="أوروبا">أوروبا</option>
+                    <option value="أمريكا الشمالية">أمريكا الشمالية</option>
+                </select>
+            </div>
+
+            <button type="submit">تسجيل</button>
+        </form>
+
+        <button class="verify-btn" onclick="window.location.href='verify.php';">اذهب إلى صفحة التحقق</button>
+    </div>
+
+</body>
+</html>
