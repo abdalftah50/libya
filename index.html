@@ -3,184 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نموذج استبيان</title>
+    <title>التسجيل في المسابقة</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8ff;
-            color: #333;
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            padding: 20px;
         }
-        .container {
-            max-width: 700px;
-            margin: 50px auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            text-align: center;
-            color: #007bff;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
+
+        label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        .form-group input[type="text"], .form-group textarea, .form-group input[type="date"], .form-group input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        .form-group button {
-            width: 100%;
-            padding: 15px;
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .form-group button:hover {
-            background-color: #218838;
-        }
-        .other-input {
-            display: none;
             margin-top: 10px;
         }
-        .other-input input {
-            width: calc(100% - 20px);
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        small {
-            display: block;
+
+        input, select {
+            width: 100%;
+            padding: 10px;
             margin-top: 5px;
-            color: #666;
         }
-        .help-text {
-            font-size: 14px;
-            color: #666;
+
+        .question {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
     </style>
-    <script>
-        function toggleOtherInput(questionId) {
-            var otherInput = document.getElementById('other-' + questionId);
-            var select = document.getElementById('select-' + questionId);
-            if (select.value === 'other') {
-                otherInput.style.display = 'block';
-            } else {
-                otherInput.style.display = 'none';
-                otherInput.querySelector('input').value = '';
-            }
-        }
-    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>نموذج استبيان</h1>
-        <form action="process.php" method="POST">
-            <div class="form-group">
-                <label for="name">الاسم:</label>
-                <input type="text" id="name" name="name" required>
-                <small class="help-text">يرجى إدخال اسمك الكامل.</small>
-            </div>
-            <div class="form-group">
-                <label for="dob">تاريخ الميلاد:</label>
-                <input type="date" id="dob" name="dob" required>
-                <small class="help-text">يرجى إدخال تاريخ ميلادك.</small>
-            </div>
-            <div class="form-group">
-                <label for="age">العمر:</label>
-                <input type="text" id="age" name="age" pattern="\d+" title="يرجى إدخال عدد صحيح" required>
-                <small class="help-text">يرجى إدخال عمرك الحالي (عدد صحيح فقط).</small>
-            </div>
-            <div class="form-group">
-                <label for="email">البريد الإلكتروني:</label>
-                <input type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="يرجى إدخال بريد إلكتروني صحيح" required>
-                <small class="help-text">يرجى إدخال بريد إلكتروني صحيح مثل example@example.com.</small>
-            </div>
-            <div class="form-group">
-                <label for="phone">رقم الهاتف:</label>
-                <input type="text" id="phone" name="phone" pattern="0(91|92|93|94)[0-9]{7}" title="رقم الهاتف يجب أن يبدأ بـ 091 أو 092 أو 093 أو 094 ويتكون من 10 أرقام" required>
-                <small class="help-text">رقم الهاتف يجب أن يبدأ بـ 091 أو 092 أو 093 أو 094 ويتكون من 10 أرقام.</small>
-            </div>
-            <div class="form-group">
-                <label for="password">كلمة المرور:</label>
-                <input type="password" id="password" name="password" required>
-                <small>استخدم كلمة المرور هذه للوصول إلى بياناتك لاحقاً.</small>
-            </div>
-            <div class="form-group">
-                <label>السؤال 1:</label>
-                <textarea name="question1" rows="4" required></textarea>
-                <small class="help-text">يرجى تقديم إجابة مفصلة للسؤال الأول.</small>
-            </div>
-            <div class="form-group">
-                <label>السؤال 2:</label>
-                <textarea name="question2" rows="4" required></textarea>
-                <small class="help-text">يرجى تقديم إجابة مفصلة للسؤال الثاني.</small>
-            </div>
-            <div class="form-group">
-                <label>السؤال 3:</label>
-                <textarea name="question3" rows="4" required></textarea>
-                <small class="help-text">يرجى تقديم إجابة مفصلة للسؤال الثالث.</small>
-            </div>
-            <div class="form-group">
-                <label>السؤال 4:</label>
-                <select id="select-4" name="question4" onchange="toggleOtherInput(4)" required>
-                    <option value="" disabled selected>اختر إجابة</option>
-                    <option value="option1">خيار 1</option>
-                    <option value="option2">خيار 2</option>
-                    <option value="option3">خيار 3</option>
-                    <option value="other">أخرى</option>
+
+    <h1>التسجيل في المسابقة</h1>
+
+    <form action="save_data.php" method="POST">
+        <label for="fullName">الاسم الكامل</label>
+        <input type="text" id="fullName" name="fullName" required>
+
+        <label for="facebook">اسم الحساب على فيس بوك</label>
+        <input type="text" id="facebook" name="facebook" required>
+
+        <label for="email">البريد الإلكتروني</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" name="password" required minlength="6">
+
+        <label for="phone">رقم الهاتف</label>
+        <input type="tel" id="phone" name="phone" pattern="09[1-4][0-9]{7}" required placeholder="يجب أن يبدأ بـ 091/092/093/094 ويتكون من 10 أرقام">
+
+        <!-- الأسئلة -->
+        <div class="questions">
+            <div class="question">
+                <label for="q1">السؤال الأول</label>
+                <select id="q1" name="q1" required>
+                    <option value="">اختر إجابة</option>
+                    <option value="1">خيار 1</option>
+                    <option value="2">خيار 2</option>
+                    <option value="other">آخر</option>
                 </select>
-                <div id="other-4" class="other-input">
-                    <input type="text" name="question4_other" placeholder="يرجى إدخال الإجابة الأخرى">
-                </div>
-                <small class="help-text">اختر خياراً أو أدخل إجابة أخرى.</small>
             </div>
-            <div class="form-group">
-                <label>السؤال 5:</label>
-                <select id="select-5" name="question5" onchange="toggleOtherInput(5)" required>
-                    <option value="" disabled selected>اختر إجابة</option>
-                    <option value="option1">خيار 1</option>
-                    <option value="option2">خيار 2</option>
-                    <option value="option3">خيار 3</option>
-                    <option value="other">أخرى</option>
+
+            <div class="question">
+                <label for="q2">السؤال الثاني</label>
+                <select id="q2" name="q2" required>
+                    <option value="">اختر إجابة</option>
+                    <option value="1">خيار 1</option>
+                    <option value="2">خيار 2</option>
+                    <option value="other">آخر</option>
                 </select>
-                <div id="other-5" class="other-input">
-                    <input type="text" name="question5_other" placeholder="يرجى إدخال الإجابة الأخرى">
-                </div>
-                <small class="help-text">اختر خياراً أو أدخل إجابة أخرى.</small>
             </div>
-            <div class="form-group">
-                <label>السؤال 6:</label>
-                <select id="select-6" name="question6" onchange="toggleOtherInput(6)" required>
-                    <option value="" disabled selected>اختر إجابة</option>
-                    <option value="option1">خيار 1</option>
-                    <option value="option2">خيار 2</option>
-                    <option value="option3">خيار 3</option>
-                    <option value="other">أخرى</option>
-                </select>
-                <div id="other-6" class="other-input">
-                    <input type="text" name="question6_other" placeholder="يرجى إدخال الإج
+        </div>
+
+        <button type="submit">تسجيل في المسابقة</button>
+    </form>
+
+</body>
+</html>
